@@ -23,19 +23,20 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItem[item._id] > 0) {
             return (
-              <div>
+              <div key={index}>
                 <div className='cart-items-title cart-items-item'>
-                  <img src={item.image} alt="" />
+                  <img src={item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItem[item._id]}</p>
                   <p>${item.price * cartItem[item._id]}</p>
-                  <p onClick={() => removeFromCard(item._id)} className='cross'>-</p>
+                  <p onClick={() => removeFromCart(item._id)} className='cross'>-</p>
                 </div>
                 <hr />
               </div>
-            )
+            );
           }
+          return null;
         })}
       </div>
       <div className="cart-bottom">
@@ -63,8 +64,8 @@ const Cart = () => {
           <div>
             <p>If you have a promo code, Enter it here</p>
             <div className='cart-promocode-input'>
-               <input type='text' placeholder='promo code'/>
-               <button>Submit</button>
+              <input type='text' placeholder='promo code' />
+              <button>Submit</button>
             </div>
           </div>
         </div>
